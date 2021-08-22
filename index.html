@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>勇者の種成長</title>
+<script type="text/JavaScript">
+dice1=4
+p=0
+m=0
+e=0
+f=0
+g=0
+h=0
+function glow(){
+p++
+m++
+dice1=Math.floor(Math.random()*4);
+dice2=Math.floor(Math.random()*4);
+nouryoku=new Array(document.form1.nouryoku1.value,document.form1.nouryoku2.value,document.form1.nouryoku3.value,document.form1.nouryoku4.value);
+document.form1.seityou1.value = nouryoku[dice1];
+document.form1.seityou2.value = nouryoku[dice2];
+document.form1.log.value += p + "：" + nouryoku[dice1] + "or" + nouryoku[dice2];
+}
+
+function kettei1(){
+if(document.form1.seityou1.value != "終了"){
+if(dice1==0){e++}
+if(dice1==1){f++}
+if(dice1==2){g++}
+if(dice1==3){h++}
+
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+document.form1.log.value += "→"+nouryoku[dice1] + "\n"
+document.form1.ato1.value=e+Number(document.form1.mae1.value)
+document.form1.ato2.value=f+Number(document.form1.mae2.value)
+document.form1.ato3.value=g+Number(document.form1.mae3.value)
+document.form1.ato4.value=h+Number(document.form1.mae4.value)
+}
+
+if(document.form1.n.value >m){glow()}
+else{document.form1.seityou1.value = "終了";document.form1.seityou2.value = "終了";dice1=4;dice2=4}
+}
+
+function kettei2(){
+if(document.form1.seityou1.value != "終了"){
+if(dice2==0){e++}
+if(dice2==1){f++}
+if(dice2==2){g++}
+if(dice2==3){h++}
+
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+document.form1.log.value += "→"+nouryoku[dice2] + "\n"
+document.form1.ato1.value=e+Number(document.form1.mae1.value)
+document.form1.ato2.value=f+Number(document.form1.mae2.value)
+document.form1.ato3.value=g+Number(document.form1.mae3.value)
+document.form1.ato4.value=h+Number(document.form1.mae4.value)
+}
+
+if(document.form1.n.value >m){glow()}else{document.form1.seityou1.value = "終了";document.form1.seityou2.value = "終了";dice1=4;dice2=4}
+}
+
+function re(){
+e=0
+f=0
+g=0
+h=0
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+}
+
+</script>
+</head>
+
+<body>
+<form name="form1">
+成長させる能力を選択してください。<br>
+また、その右側にその能力の現在地を入力してください。<br>
+能力1：<select name="nouryoku1">
+	<option value="器用">器用</option>
+	<option value="敏捷">敏捷</option>
+	<option value="筋力">筋力</option>
+	<option value="生命">生命</option>
+	<option value="知力">知力</option>
+	<option value="精神">精神</option>
+</select>
+<input type="text" name="mae1" style="width:40px;">
++
+<input type="text" name="a" style="width:40px;" placeholder="0" disabled>回
+=
+<input type="text" name="ato1" style="width:40px;" disabled>
+<br>
+能力2：<select name="nouryoku2">
+	<option value="器用">器用</option>
+	<option value="敏捷">敏捷</option>
+	<option value="筋力">筋力</option>
+	<option value="生命">生命</option>
+	<option value="知力">知力</option>
+	<option value="精神">精神</option>
+</select>
+<input type="text" name="mae2" style="width:40px;">
++
+<input type="text" name="b" style="width:40px;" placeholder="0" disabled>回
+=
+<input type="text" name="ato2" style="width:40px;" disabled>
+<br>
+能力3：<select name="nouryoku3">
+	<option value="器用">器用</option>
+	<option value="敏捷">敏捷</option>
+	<option value="筋力">筋力</option>
+	<option value="生命">生命</option>
+	<option value="知力">知力</option>
+	<option value="精神">精神</option>
+</select>
+<input type="text" name="mae3" style="width:40px;">
++
+<input type="text" name="c" style="width:40px;" placeholder="0" disabled>回
+=
+<input type="text" name="ato3" style="width:40px;" disabled>
+<br>
+能力4：<select name="nouryoku4">
+	<option value="器用">器用</option>
+	<option value="敏捷">敏捷</option>
+	<option value="筋力">筋力</option>
+	<option value="生命">生命</option>
+	<option value="知力">知力</option>
+	<option value="精神">精神</option>
+</select>
+<input type="text" name="mae4" style="width:40px;">
++
+<input type="text" name="d" style="width:40px;" placeholder="0" disabled>回
+=
+<input type="text" name="ato4" style="width:40px;" disabled>
+<p>
+成長回数を入力してください。<br>
+<input type="text" name="n"> <br>
+<input type="button" value="成長開始" value="start" onclick="if(dice1==4){m=0;glow()}" >
+<p>
+成長させる方をクリックしてください。<br>
+能力1：<input type="button" name="seityou1" onclick="kettei1()">
+能力2：<input type="button" name="seityou2" onclick="kettei2()">
+<p>
+<input type="button" value="能力の選択肢を変える" onclick="re()">
+<p>
+記録用<br>
+<textarea name="log" rows="50"></textarea>
+</form>
+</body>
+</html>
