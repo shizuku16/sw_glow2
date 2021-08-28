@@ -89,11 +89,11 @@ document.form1.d.value=h
 	<option value="知力">知力</option>
 	<option value="精神">精神</option>
 </select>
-<input type="text" name="mae1" style="width:40px;">
+<input type="number" name="mae1" min=0 style="width:45px;">
 +
-<input type="text" name="a" style="width:40px;" placeholder="0" disabled>回
+<input type="number" name="a" style="width:40px;" placeholder="0" disabled>回
 =
-<input type="text" name="ato1" style="width:40px;" disabled>
+<input type="number" name="ato1" style="width:40px;" disabled>
 <br>
 能力2：<select name="nouryoku2">
 	<option value="器用">器用</option>
@@ -103,11 +103,11 @@ document.form1.d.value=h
 	<option value="知力">知力</option>
 	<option value="精神">精神</option>
 </select>
-<input type="text" name="mae2" style="width:40px;">
+<input type="number" name="mae2" min=0 style="width:45px;">
 +
-<input type="text" name="b" style="width:40px;" placeholder="0" disabled>回
+<input type="number" name="b" style="width:40px;" placeholder="0" disabled>回
 =
-<input type="text" name="ato2" style="width:40px;" disabled>
+<input type="number" name="ato2" style="width:40px;" disabled>
 <br>
 能力3：<select name="nouryoku3">
 	<option value="器用">器用</option>
@@ -117,11 +117,11 @@ document.form1.d.value=h
 	<option value="知力">知力</option>
 	<option value="精神">精神</option>
 </select>
-<input type="text" name="mae3" style="width:40px;">
+<input type="number" name="mae3" min=0 style="width:45px;">
 +
-<input type="text" name="c" style="width:40px;" placeholder="0" disabled>回
+<input type="number" name="c" style="width:40px;" placeholder="0" disabled>回
 =
-<input type="text" name="ato3" style="width:40px;" disabled>
+<input type="number" name="ato3" style="width:40px;" disabled>
 <br>
 能力4：<select name="nouryoku4">
 	<option value="器用">器用</option>
@@ -131,14 +131,14 @@ document.form1.d.value=h
 	<option value="知力">知力</option>
 	<option value="精神">精神</option>
 </select>
-<input type="text" name="mae4" style="width:40px;">
+<input type="number" name="mae4" min=0 style="width:45px;">
 +
-<input type="text" name="d" style="width:40px;" placeholder="0" disabled>回
+<input type="number" name="d" style="width:40px;" placeholder="0" disabled>回
 =
-<input type="text" name="ato4" style="width:40px;" disabled>
+<input type="number" name="ato4" style="width:40px;" disabled>
 <p>
 成長回数を入力してください。<br>
-<input type="text" name="n"> <br>
+<input type="number" min=1 name="n"> <br>
 <input type="button" value="成長開始" value="start" onclick="if(dice1==4){m=0;glow()}" >
 <p>
 成長させる方をクリックしてください。<br>
