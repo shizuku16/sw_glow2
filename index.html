@@ -56,6 +56,10 @@ function glow(){
 	nouryoku=[]
 	for(i=0;i<6;i++)
 		if(document.getElementById(`seityou${i}`).checked)nouryoku.push(nouryokulist[i])
+	if(nouryoku.length!=4){
+		alert("成長させる能力を4つ選んでください。")
+		return
+	}
 	p++
 	m++
 	dice1=Math.floor(Math.random()*4);
