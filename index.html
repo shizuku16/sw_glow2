@@ -3,95 +3,106 @@
 <title>勇者の種成長</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/JavaScript">
-dice1=4
-var nouryoku=[]
-var nouryokulist=["器用","敏捷","筋力","生命力","知力","精神力"]
-p=0
-m=0
-e=0
-f=0
-g=0
-h=0
+	dice1=4
+	var nouryoku=[]
+	var nouryokulist=["器用","敏捷","筋力","生命力","知力","精神力"]
+	p=0
+	m=0
+	e=0
+	f=0
+	g=0
+	h=0
 
-function uketori(){
-	var url=new URL(window.location.href)
-	var nouryokuhyou=["kiyou","binsyou","kinryoku","seimeiryoku","tiryoku","seisinryoku"]
-	nouryoku1=url.searchParams.get("nouryoku1")
-	nouryoku2=url.searchParams.get("nouryoku2")
-	nouryoku3=url.searchParams.get("nouryoku3")
-	nouryoku4=url.searchParams.get("nouryoku4")
-	j=1
-	for(i=0;i<6;i++){
-		document.getElementById(`前${nouryokulist[i]}`).value=url.searchParams.get(`yuusya${i+1}`)
-		if(url.searchParams.get(`nouryoku${j}`)==nouryokuhyou[i]){
-			document.getElementById(`seityou${i}`).checked="checked"
-			j++
+	function uketori(){
+		const url=new URL(window.location.href);
+		const nouryokuhyou=["kiyou","binsyou","kinryoku","seimeiryoku","tiryoku","seisinryoku"];
+		nouryoku1=url.searchParams.get("nouryoku1");
+		nouryoku2=url.searchParams.get("nouryoku2");
+		nouryoku3=url.searchParams.get("nouryoku3");
+		nouryoku4=url.searchParams.get("nouryoku4");
+		j=1;
+		for(let i=0;i<6;i++){
+			document.getElementById(`前${nouryokulist[i]}`).value=url.searchParams.get(`yuusya${i+1}`);
+			if(url.searchParams.get(`nouryoku${j}`)==nouryokuhyou[i]){
+				document.getElementById(`seityou${i}`).checked="checked";
+				j++;
+			}
 		}
 	}
-}
 
-function load() {
-	var url=document.getElementById("url").value
-	$.ajax({
-            url: url+".js",
-            type: 'GET',
-            dataType: 'jsonp',
-            jsonpCallback: 'callback'
-        })
-    .done(function(jsondate){
-		document.form1.mae1.value=jsondate.NP1
-		document.form1.mae2.value=jsondate.NP2
-		document.form1.mae3.value=jsondate.NP3
-		document.form1.mae4.value=jsondate.NP4
-		document.form1.mae5.value=jsondate.NP5
-		document.form1.mae6.value=jsondate.NP6
-		var header = document.getElementById('name');
-		header.textContent = '';
-		header.insertAdjacentHTML('afterbegin','　キャラ名：'+jsondate.data_title);
-	})
-}
-
-function glow(){
-	var seityounumber=[]
-	nouryoku=[]
-	for(i=0;i<6;i++)
-		if(document.getElementById(`seityou${i}`).checked)nouryoku.push(nouryokulist[i])
-	if(nouryoku.length!=4){
-		alert("成長させる能力を4つ選んでください。")
-		return
-	}
-	p++
-	m++
-	dice1=Math.floor(Math.random()*4);
-	dice2=Math.floor(Math.random()*4);
-	document.form1.button1.value = nouryoku[dice1];
-	document.form1.button2.value = nouryoku[dice2];
-	document.form1.log.value += p + "：" + nouryoku[dice1] + "or" + nouryoku[dice2];
-}
-
-function kettei1(){
-	if(document.form1.button1.value != "終了"){
-	document.getElementById(`追加${nouryoku[dice1]}`).value=Number(document.getElementById(`追加${nouryoku[dice1]}`).value)+1
-	for(i=0;i<6;i++)
-		document.getElementById(`後${nouryokulist[i]}`).value=Number(document.getElementById(`前${nouryokulist[i]}`).value)+Number(document.getElementById(`追加${nouryokulist[i]}`).value)
-	document.form1.log.value += "→"+nouryoku[dice1] + "\n"
+	function load() {
+		const url=document.getElementById("url").value;
+		$.ajax({
+				url: url+".js",
+				type: 'GET',
+				dataType: 'jsonp',
+				jsonpCallback: 'callback'
+			})
+		.done(function(jsondate){
+			document.form1.mae1.value=jsondate.NP1;
+			document.form1.mae2.value=jsondate.NP2;
+			document.form1.mae3.value=jsondate.NP3;
+			document.form1.mae4.value=jsondate.NP4;
+			document.form1.mae5.value=jsondate.NP5;
+			document.form1.mae6.value=jsondate.NP6;
+			const header = document.getElementById('name');
+			header.textContent = '';
+			header.insertAdjacentHTML('afterbegin','　キャラ名：'+jsondate.data_title);
+		})
 	}
 
-	if(document.form1.n.value >m)glow()
-	else{document.form1.button1.value = "終了";document.form1.button2.value = "終了";dice1=4;dice2=4}
-}
-
-function kettei2(){
-	if(document.form1.button1.value != "終了"){
-	document.getElementById(`追加${nouryoku[dice2]}`).value=Number(document.getElementById(`追加${nouryoku[dice2]}`).value)+1
-	for(i=0;i<6;i++)
-		document.getElementById(`後${nouryokulist[i]}`).value=Number(document.getElementById(`前${nouryokulist[i]}`).value)+Number(document.getElementById(`追加${nouryokulist[i]}`).value)
-	document.form1.log.value += "→"+nouryoku[dice2] + "\n"
+	function glow(){
+		nouryoku=[];
+		for(i=0;i<6;i++)
+			if(document.getElementById(`seityou${i}`).checked)nouryoku.push(nouryokulist[i])
+		if(nouryoku.length!=4){
+			alert("成長させる能力を4つ選んでください。")
+			return
+		}
+		p++
+		m++
+		dice1=Math.floor(Math.random()*4);
+		dice2=Math.floor(Math.random()*4);
+		document.form1.button1.value = nouryoku[dice1];
+		document.form1.button2.value = nouryoku[dice2];
+		document.form1.log.value += p + "：" + nouryoku[dice1] + "or" + nouryoku[dice2];
 	}
 
-	if(document.form1.n.value >m)glow()
-	else{document.form1.button1.value = "終了";document.form1.button2.value = "終了";dice1=4;dice2=4}
-}
+	function kettei1(){
+		if(document.form1.button1.value != "終了"){
+		document.getElementById(`追加${nouryoku[dice1]}`).value=Number(document.getElementById(`追加${nouryoku[dice1]}`).value)+1
+		for(i=0;i<6;i++)
+			document.getElementById(`後${nouryokulist[i]}`).value=Number(document.getElementById(`前${nouryokulist[i]}`).value)+Number(document.getElementById(`追加${nouryokulist[i]}`).value)
+		document.form1.log.value += "→"+nouryoku[dice1] + "\n";
+		document.form1.log.scrollTop=document.form1.log.scrollHeight;
+		}
+
+		if(document.form1.n.value >m) glow();
+		else{
+			document.form1.button1.value = "終了";
+			document.form1.button2.value = "終了";
+			dice1=4;
+			dice2=4;
+		}
+	}
+
+	function kettei2(){
+		if(document.form1.button1.value != "終了"){
+		document.getElementById(`追加${nouryoku[dice2]}`).value=Number(document.getElementById(`追加${nouryoku[dice2]}`).value)+1
+		for(i=0;i<6;i++)
+			document.getElementById(`後${nouryokulist[i]}`).value=Number(document.getElementById(`前${nouryokulist[i]}`).value)+Number(document.getElementById(`追加${nouryokulist[i]}`).value)
+		document.form1.log.value += "→"+nouryoku[dice2] + "\n";
+		document.form1.log.scrollTop=document.form1.log.scrollHeight;
+		}
+
+		if(document.form1.n.value >m) glow()
+		else{
+			document.form1.button1.value = "終了";
+			document.form1.button2.value = "終了";
+			dice1=4;
+			dice2=4;
+		}
+	}
 
 </script>
 </head>
